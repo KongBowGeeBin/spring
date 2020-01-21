@@ -1,7 +1,9 @@
 package com.hjh.lession03;
 
-import com.hjh.lession03.com.hjh.lession03.bean.Person;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.hjh.lession03.com.hjh.lession03.bean.Person;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 public class TestFastJSON {
 
     //将类的对象转成json对象
+    @Test
     public void test1(){
 
         Person p1 = new Person();
@@ -23,7 +26,15 @@ public class TestFastJSON {
         list.add(p1);
         list.add(p2);
 
-        String jString = JSON.toJSONString(p1);
+        String jString = JSONObject.toJSONString(p1);
+        System.out.println(jString);
     }
 
+    //将json字符串转成对象
+    @Test
+    public void test2(){
+        String jString = "{\"age\":25,\"id\":3,\"name\":\"XJP\",\"sex\":\"male\"}";
+        Person p3 = JSON.parseObject(jString,Person.class);
+        System.out.println(p3.getName());
+    }
 }
